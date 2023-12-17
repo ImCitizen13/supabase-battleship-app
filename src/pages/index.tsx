@@ -27,9 +27,10 @@ enum ForceColor {
 }
 
 export default function Home() {
-
   const [side, setSide] = useState<boolean>(true);
   const [userName, setUserName] = useState<string>("");
+  const [added, setAdded] = useState<boolean>(false);
+  const [addingName, setAddingName] = useState<boolean>(false);
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
@@ -40,11 +41,17 @@ export default function Home() {
   };
   const createPlayer = api.player.add.useMutation({
     onSuccess: (newPlayer) => {
-      console.log("Successfully added: ", newPlayer)
-    },onError(error, variables, context) {
-      console.error
+      console.log("Successfully added: ", newPlayer);
+      setAdded(true)
+      setAddingName(false)
     },
+    onError(error, variables, context) {
+      console.error;
+    }, onMutate: () => {
+      setAddingName(true)
+    }
   });
+
   const handleButtonClick = () => {
     createPlayer.mutate({
       name: userName,
@@ -91,6 +98,7 @@ export default function Home() {
               (!side ? (
                 <button onClick={handleButtonClick} className={`btn btn-info`}>
                   Join the Light Side
+                  {addingName && <span className="loading loading-spinner"></span>}
                 </button>
               ) : (
                 <button
@@ -98,10 +106,11 @@ export default function Home() {
                   className="btn btn-error hover:bg-primary-red"
                 >
                   Join the Dark Side
+                  {addingName && <span className="loading loading-spinner"></span>}
                 </button>
               ))}
 
-            <div></div>
+            {added && <div className="text-8xl ">User Added</div>}
             <div></div>
             <div></div>
           </div>
