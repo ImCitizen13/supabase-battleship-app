@@ -40,7 +40,9 @@ export default function Home() {
   };
   const createPlayer = api.player.add.useMutation({
     onSuccess: (newPlayer) => {
-      console.log()
+      console.log("Successfully added: ", newPlayer)
+    },onError(error, variables, context) {
+      console.error
     },
   });
   const handleButtonClick = () => {
