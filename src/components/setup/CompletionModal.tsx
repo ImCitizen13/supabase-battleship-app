@@ -3,6 +3,7 @@ export type ModalProps = {
   title: string;
   message: string;
   link: string;
+  side: boolean;
 };
 
 export default function CompletionModal({ title, message, link }: ModalProps) {

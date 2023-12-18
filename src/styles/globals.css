@@ -19,8 +19,8 @@
   --blade-lightness: 50%;
   --lightsaber-blue: #2E67F8;
   --lightsaber-red: #EB212E;
-  --lightside-radial-color: rgba(0,0, 255, 0.12);
-  --darkside-radial-color: rgba(255,0, 0, 0.12);;
+  --lightside-radial-color: rgba(0,0, 255, 0.4);
+  --darkside-radial-color: rgba(255,0, 0, 0.4);;
 
 }
 .coolButton {
