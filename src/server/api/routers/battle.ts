@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Side } from "@prisma/client";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -18,11 +19,17 @@ export const battleRouter = createTRPCRouter({
           name: z.string(),
           avatar: z.string(),
         }),
+        side: z.string(),
       }),
     )
     .mutation(async ({ input }) => {
       const player = await prisma.battle.create({
-        data: { name: input.name, playerId: input.host.id },
+        data: {
+          name: input.name,
+          playerId: input.host.id,
+          winningSide:
+            input.side == "darkSide" ? Side.darkSide : Side.lightSide,
+        },
         include: {
           host: true,
         },

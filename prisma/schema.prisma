@@ -7,15 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Side {
+  darkSide
+  lightSide
+}
+
 model Battle {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  host      Player  @relation("host", fields: [playerId], references: [id])
-  playerId  Int      @unique
-  guest     Player? @relation("guest", fields: [guestId], references: [id])
-  guestId   Int?      @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  host        Player   @relation("host", fields: [playerId], references: [id])
+  playerId    Int      @unique
+  guest       Player?  @relation("guest", fields: [guestId], references: [id])
+  guestId     Int?     @unique
+  winningSide Side     
+  concluded   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([name])
 }
@@ -28,12 +35,20 @@ model Battle {
 model Player {
   id        Int      @id @default(autoincrement())
   name      String   @unique
-  avatar    String   
+  avatar    String
+  side      Side
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  host      Battle?  @relation("host")
-  guest     Battle?  @relation("guest")
+
+  host  Battle? @relation("host")
+  guest Battle? @relation("guest")
 
   @@index([name])
+}
+
+model Question {
+  id        Int      @id @default(autoincrement())
+  content   String   @unique
+  choices   String   
+  answer    String 
 }
