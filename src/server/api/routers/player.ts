@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Side } from "@prisma/client";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -23,11 +24,16 @@ export const playerRouter = createTRPCRouter({
       z.object({
         name: z.string().min(1).max(32),
         avatar: z.string().url().min(1),
+        side: z.string(),
       }),
     )
     .mutation(async ({ input }) => {
       const player = await prisma.player.create({
-        data: { name: input.name, avatar: input.avatar },
+        data: {
+          name: input.name,
+          avatar: input.avatar,
+          side: input.side == "darkSide" ? Side.darkSide : Side.lightSide,
+        },
       });
       return player;
     }),

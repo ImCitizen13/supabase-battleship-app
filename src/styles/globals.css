@@ -19,6 +19,9 @@
   --blade-lightness: 50%;
   --lightsaber-blue: #2E67F8;
   --lightsaber-red: #EB212E;
+  --lightside-radial-color: rgba(0,0, 255, 0.12);
+  --darkside-radial-color: rgba(255,0, 0, 0.12);;
+
 }
 .coolButton {
   box-shadow:
@@ -179,3 +182,9 @@ body {
   background-color: #ff4500;
   color: #fff;
 }
+
+.side {
+  background-image: radial-gradient(circle, transparent 150px, -var(--side-radial-color));
+}
+
+

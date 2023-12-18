@@ -11,8 +11,8 @@ import { Fade } from "react-awesome-reveal";
 
 // import { api } from "~/utils/api";
 import ChooseSideForm from "~/components/setup/ChooseSideForm";
-
-
+import PopCover from "~/components/popCover/PopCover";
+import CompletionModal from "~/components/setup/CompletionModal";
 
 export default function Home() {
 
@@ -25,25 +25,9 @@ export default function Home() {
         <Fade>
           <div className="flex flex-col gap-14">
             <ChooseSideForm/>
-            <div></div>
-            <div></div>
+            {/* <PopCover/> */}
           </div>
         </Fade>
-        {/* <div className="diff h-[100vh]">
-          <div onClick={() => console.log("Light Side")} className="diff-item-1">
-            <div  className="gap-6 grid place-content-center bg-secondary-blue text-9xl font-black text-white">
-              <span className="">Light</span>
-            </div>
-          </div>
-          <div onClick={() => console.log("Dark Side")} className="diff-item-2">
-            <div className="gap-6 grid place-content-center bg-primary-red text-9xl font-black text-black">
-              <span >Dark</span>
-            </div>
-          </div>
-          <div className="diff-resizer"></div>
-        </div> */}
-
-        {/* <SuperChatComponent/> */}
       </main>
     </>
   );

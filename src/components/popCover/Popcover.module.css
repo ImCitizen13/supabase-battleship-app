@@ -1,78 +1,65 @@
-.item{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    background-color:burlywood;
-    margin: 50px;
-    min-width: 200px;
-    min-height:inherit;
-    border-radius: 15px;
-  }
-  
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: burlywood;
+  margin: 50px;
+  min-width: 200px;
+  min-height: inherit;
+  border-radius: 15px;
+}
 
-  
-  .hover-cards {
-    display: flex;
-    overflow-x: auto;
-  
-    flex-wrap: wrap;
-    flex-direction: row;
-    /* Centering */
-    justify-content: center;
-    align-items: center;
-    
-  
-    /* background-color: gray; */
-    gap: 2rem;
-    min-width: 100%;
-    min-height: 200px;
-    /* width: 100%;
-    max-height: 100vh; */
-    padding: 2rem;
-  }
-  
-  .card::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .hover-cards--content {
-    background-color: #e74c3c;
-    min-width: 200px;
-    min-height: 200px;
-    margin: 5px;
-  }
-  
-  
-  img{
-    max-width: 100%;
-  }
-  
-  .card{
-    min-height: 100vh; 
-    perspective: 2000px;
-    /* display: grid; */
-    /* place-content:center; */
-  }
-  
-  .pop-out {
-    width: 300px;
-    aspect-ratio: 9 / 16;
-    /* outline: 3px solid gold; */
-    position: relative;
-    transform-style: preserve-3d;
-    
-    transition: rotate var(--timing) ease;
-  }
-  
-  
-  
-  
-  .pop-out:hover {
-    rotate: x var(--rotate);
-  }
-  
-  .pop-out::before {
+.hover_cards {
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* Centering */
+  justify-content: center;
+  align-items: center;
+  /* background-color: gray; */
+  gap: 2rem;
+  min-width: 100%;
+  min-height: 200px;
+  padding: 2rem;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+.hover_cards__content {
+  background-color: #e74c3c;
+  min-width: 200px;
+  min-height: 200px;
+  margin: 5px;
+}
+
+.imgs {
+  max-width: 100%;
+}
+
+.card {
+  perspective: 2000px;
+}
+
+.pop_out {
+  width: 225px;
+  aspect-ratio: 9 / 16;
+  /* outline: 3px solid gold; */
+  position: relative;
+  transform-style: preserve-3d;
+
+  transition: rotate 400ms ease;
+}
+
+.pop_out:hover {
+  rotate: x 20deg;
+}
+
+
+.pop_out::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -80,97 +67,78 @@
     z-index: 100;
     background-image: radial-gradient(circle, transparent 150px, black);
     opacity: 0;
-    transition: opacity var(--timing);
+    transition: opacity 400ms;
   }
-  
-  .pop-out:hover::before {
-    opacity: 1;
-  }
-  
-  .pop-out::after {
-    content: "";
-    position: absolute;
-    inset: 80% 1.5rem  1.5rem;
-    translate: 0;
-    transform: translateZ(-100px);
-    background: black;
-    filter: blur(1rem);
-    z-index: 1;
-    transition: 
-    rotate var(--timing),
-    translate var(--timing);
-  
-  }
-  
-  .pop-out:hover::after {
-    rotate: x calc(var(--rotate) * -1);
-    translate: 0 60px;
-  }
-  
-  .bg-image {
-    position: absolute;
-    z-index: 10;
-    height: 100%;
-    object-fit: cover;
-    background-position: -300px center ;
-  }
-  
-  .logo-image,
-  .front-image {
-    position: absolute;
-    /* opacity: 0; */
-  }
-  
-  .logo-image {
-    z-index: 1000;
-    filter: brightness(0.7);
-    width: 65%;
-    margin-inline: auto;
-    inset: auto 0 2rem;
-    transform: translateY(0rem) translateZ(20px);
-    transition: var(--timing);
-    
-  }
-  
-  .pop-out:hover .front-image {
-    transform: translateY(-2rem) translateZ(10px);
-    rotate: x calc(var(--rotate) * -1);
-  
-  }
-  
-  
-  
-  
-  .front-image {
-    margin-inline: auto;
-    inset: auto 0 2rem;
-    opacity: 0;
-    scale: 1.35;
-    transform-origin: bottom;
-    z-index: 100;
-  
-    transition: var(--timing);
-  }
-  
-  .pop-out:hover .front-image {
-    opacity: 1;
-    transform: translateY(-2rem) translateZ(-20px);
-    rotate: x calc(var(--rotate) * -1);
-  }
-  
-  .title-header {
-    padding: 0.5rem;
-  }
-  
-  .rs-shop-header, .rs-shop-subheader {
-  font-size: 48px;
-  line-height: 1.08349;
-  font-weight: 600;
-  letter-spacing: -.003em;
-  font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
-  display: inline;
-  }
-  
-  .rs-shop-header {
-    color: white;
-  }
+
+.pop_out:hover::before {
+  opacity: 1;
+}
+
+.pop_out::after {
+  content: "";
+  position: absolute;
+  inset: 80% 1.5rem 1.5rem;
+  translate: 0;
+  transform: translateZ(-100px);
+  background: black;
+  filter: blur(1rem);
+  z-index: 1;
+  transition:
+    rotate 400ms,
+    translate 400ms;
+}
+
+.pop_out:hover::after {
+  rotate: x calc(20deg * -1);
+  translate: 0 60px;
+}
+
+.bg_image {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  object-fit: cover;
+  background-position: -300px center;
+}
+
+.logo_image,
+.front_image {
+  position: absolute;
+  /* opacity: 0; */
+}
+
+.logo_image {
+  z-index: 1000;
+  filter: brightness(0.7);
+  width: 65%;
+  margin-inline: auto;
+  inset: auto 0 2rem;
+  transform: translateY(0rem) translateZ(20px);
+  transition: 400ms;
+}
+
+.pop_out:hover .front_image {
+  transform: translateY(-2rem) translateZ(10px);
+  rotate: x calc(20deg * -1);
+}
+
+.front_image {
+  margin-inline: auto;
+  inset: auto 0 2rem;
+  opacity: 0;
+  scale: 1.35;
+  transform-origin: bottom;
+  z-index: 100;
+
+  transition: 400ms;
+}
+
+.pop_out:hover .front_image {
+  opacity: 1;
+  transform: translateY(-2rem) translateZ(-20px);
+  rotate: x calc(20deg * -1);
+}
+
+.title_header {
+  padding: 0.5rem;
+}
