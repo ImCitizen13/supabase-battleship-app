@@ -24,11 +24,13 @@ const lightsideModalProps = {
   title: "Congratulations Padawan",
   message: "May the Force be with you...",
   link: "/battle",
+  side: false
 };
 const darksideModalProps = {
   title: "Yees yess",
   message: "Infinite Power",
   link: "/battle",
+  side: true
 };
 
 export default function ChooseSideForm() {
@@ -138,19 +140,19 @@ export default function ChooseSideForm() {
         </>
       )}
       {showModal && side && <CompletionView {...darksideModalProps} />}
-      {showModal && side && <CompletionView {...lightsideModalProps} />}
+      {showModal && !side && <CompletionView {...lightsideModalProps} />}
     </div>
   );
 }
 
-function CompletionView({ title, message, link }: ModalProps) {
+function CompletionView({ title, message, link, side }: ModalProps) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <span>{message}</span>
-      <Link href={link}>
-        <button>Let's Battle</button>
-      </Link>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className=" text-4xl">{title}</h1>
+      <span className="text-4xl">{message}</span>
+      <button className={"btn " + side ? "btn-error" : "btn-info"}><Link className="text-white" href={link}>Let's Battle
+      </Link></button>
+        
     </div>
   );
 }
