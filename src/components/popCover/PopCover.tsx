@@ -1,4 +1,4 @@
-import styles from "./PopCover.module.css"
+import styles from "./popcover.module.css"
 
 type HoverCard = {
   bgImgSrc: string;
